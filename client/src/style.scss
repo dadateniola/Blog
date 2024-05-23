@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 500;
+
+  &:not(.quill):not(.quill *) {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+}
+
+$main-bg: #fff;
+$sub: #f0f0f0;
+$btn-padding: 10px 14px;
+$page-padding: 20px;
+$section-padding: 40px;
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-direction($gap: 12px) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+%button {
+  padding: $btn-padding;
+  font-size: 1em;
+  font-weight: 600;
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+
+  &:not(.cta):hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.no-sub {
+  text-transform: none !important;
+}
+
+.pulsate {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  animation: pulse 3s infinite;
+
+  &.stop {
+    animation: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+      background-color: #f0f0f0;
+  }
+
+  50% {
+      background-color: #ddd;
+  }
+
+  100% {
+      background-color: #f0f0f0;
+  }
+}
+
+.app {
+  .container {
+    //LOGIN & REGISTER
+
+    .auth {
+      width: 100vw;
+      height: 100dvh;
+      background-color: $main-bg;
+      @include flex-center();
+      @include flex-direction(30px);
+
+      h1 {
+        width: 350px;
+        font-size: 3em;
+        font-weight: 800;
+      }
+
+      form {
+        width: 350px;
+        @include flex-direction(20px);
+
+        input {
+          padding: $btn-padding;
+          font-size: 1em;
+          border: none;
+          background-color: $sub;
+        }
+
+        button {
+          @extend %button;
+        }
+
+        span {
+          color: red;
+          text-align: center;
+        }
+      }
+
+      a {
+        color: red;
+      }
+    }
+
+    //NAVBAR
+
+    .navbar {
+      padding: $page-padding;
+      padding-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+
+      .links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        a {
+          font-size: 0.85em;
+          text-transform: uppercase;
+          color: black;
+        }
+      }
+
+      .action {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .user-name {
+          width: 38px;
+          height: 38px;
+          font-weight: 800;
+          @include flex-center();
+          background-color: purple;
+          border-radius: 100%;
+          color: white;
+          text-transform: uppercase;
+        }
+
+        .logout,
+        .write-link {
+          @extend %button;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    //FOOTER
+
+    footer {
+      padding: $page-padding;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85em;
+      text-transform: capitalize;
+
+      h4,
+      a,
+      p {
+        color: black;
+        font-weight: 600;
+      }
+
+      .info {
+        display: flex;
+        gap: 20px;
+      }
+    }
+
+    //HOME
+
+    .home {
+      padding: $section-padding 0;
+
+      .posts {
+        @include flex-direction($section-padding * 2.5);
+
+        .post {
+          display: flex;
+          gap: $section-padding;
+
+          &:nth-child(2n + 1) {
+            flex-direction: row-reverse;
+
+            .text {
+              padding-right: 0;
+              padding-left: 20px;
+            }
+          }
+
+          .img {
+            width: 50%;
+            max-height: 80vh;
+            aspect-ratio: 1/1;
+            background-color: $sub;
+          }
+
+          .text {
+            padding: 10px 0;
+            padding-right: 20px;
+            width: 50%;
+            @include flex-direction(40px);
+
+            .text-cont {
+              @include flex-direction(20px);
+            }
+
+            h1 {
+              font-weight: 600;
+            }
+
+            a {
+              @extend %button;
+              font-size: 0.9em;
+              max-width: 300px;
+            }
+          }
+        }
+      }
+    }
+
+    //SINGLE
+
+    .single {
+      padding: $section-padding 0;
+
+      .content {
+        @include flex-direction(calc($section-padding / 2));
+
+        .img {
+          width: 100%;
+          height: 70vh;
+        }
+
+        .single-row {
+          display: flex;
+          max-width: 1440px;
+          margin: auto;
+
+          .single-cont {
+            @include flex-direction(20px);
+
+            .profile {
+              $profile-gap: 20px;
+              padding: $page-padding;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .info {
+                display: flex;
+                gap: $profile-gap;
+              }
+
+              img {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+              }
+
+              .text {
+                @include flex-direction(2px);
+                justify-content: center;
+
+                h1 {
+                  font-size: 1em;
+                  text-transform: capitalize;
+                  font-weight: 700;
+                }
+
+                p {
+                  font-size: 0.8em;
+                }
+              }
+
+              .action {
+                padding: 5px 0;
+                display: flex;
+                gap: $profile-gap;
+
+                a,
+                button {
+                  @extend %button;
+                  font-size: 0.85em;
+                }
+              }
+            }
+
+            .single-text {
+              padding: 0 $page-padding;
+
+              h1 {
+                font-weight: 700;
+                font-size: 2.5em;
+                padding-bottom: $page-padding;
+              }
+
+              p {
+                text-align: justify;
+                line-height: 2;
+              }
+            }
+          }
+
+          .menu {
+            padding: $page-padding;
+            min-width: 350px;
+            @include flex-direction($section-padding);
+
+            h1 {
+              font-size: 1.5em;
+              font-weight: 700;
+            }
+
+            .posts {
+              @include flex-direction($section-padding);
+
+              .post {
+                @include flex-direction(15px);
+
+                h2 {
+                  font-size: 1.5em;
+                  font-weight: 700;
+                }
+
+                a {
+                  @extend %button;
+                  max-width: 150px;
+                  font-size: 0.8em;
+                }
+              }
+            }
+
+            @media (max-width: 1024px) {
+              min-width: 280px;
+
+              .posts .post h2,
+              h1 {
+                font-size: 1.1em;
+              }
+
+              .post {
+                gap: 10px;
+              }
+            }
+          }
+
+          @media (max-width: 850px) {
+            flex-direction: column;
+            gap: calc($section-padding / 2);
+
+            .menu {
+              gap: calc($section-padding / 2);
+
+              .posts {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: $page-padding;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //WRITE
+
+    .write {
+      display: flex;
+      gap: $page-padding;
+      padding: $section-padding $page-padding;
+
+      .content {
+        flex: 2;
+        @include flex-direction($page-padding);
+
+        input {
+          padding: $btn-padding;
+          font-size: 1em;
+          border: none;
+          background-color: $sub;
+        }
+
+        .editor-container {
+          flex: 1;
+          min-height: 300px;
+          overflow: auto;
+
+          .quill {
+            height: calc(100% - 42px);
+
+            .ql-toolbar {
+              height: 42px;
+            }
+
+            .ql-container {
+              background-color: $sub;
+            }
+          }
+        }
+      }
+
+      .menu {
+        flex: 1;
+        @include flex-direction($page-padding);
+
+        .item {
+          padding: $page-padding;
+          border: 1px solid #ccc;
+          @include flex-direction(calc($page-padding / 1.5));
+
+          h1 {
+            text-transform: capitalize;
+            font-size: 1.5em;
+            font-weight: 600;
+          }
+
+          p {
+            font-size: 0.8em;
+            text-transform: capitalize;
+          }
+
+          b {
+            font-weight: 700;
+          }
+
+          label {
+            text-transform: capitalize;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          .buttons {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+              @extend %button;
+              font-size: 0.8em;
+            }
+          }
+
+          .categories {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            label {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 800px) {
+        flex-direction: column;
+
+        .content {
+          .editor-container {
+            flex: none;
+            height: 300px;
+          }
+        }
+
+        .menu {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+}
